@@ -1,12 +1,28 @@
-var VideoList = () => (
-  <div className="video-list">
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-    <div><h5><em>videoListEntry</em> view goes here</h5></div>
-  </div>
-);
+import exampleVideoData from '../data/exampleVideoData.js';
+import VideoListEntry from './VideoListEntry.js';
+
+//iterate the array of example Videodata,
+//for each video in the array, we create a videoListEntry component
+
+
+var VideoList = () => {
+  let items = exampleVideoData.map((item) =>{
+    console.log(item.snippet.thumbnails.default.url);
+    return (
+      <VideoListEntry
+        title={item.snippet.title}
+        description={item.snippet.description}
+        mediaImage={item.snippet.thumbnails.default.url}
+      />
+    );
+  });
+
+  return (
+    <div className="video-list">
+      <div><h5><em>{items}</em> </h5></div>
+    </div>
+  );
+};
 
 // PropTypes tell other developers what `props` a component expects
 // Warnings will be shown in the console when the defined rules are violated
